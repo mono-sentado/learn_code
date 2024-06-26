@@ -1,4 +1,6 @@
-alert("Hello World")
+function seleccionarMonstruoJugador() {
+    alert('Seleccionaste tu Mostruo')
+}
 
 let botonMonstruoJugador = document.getElementById('bmonstruo')
-botonMonstruoJugador.addEventListener('click')
+botonMonstruoJugador.addEventListener('click', seleccionarMonstruoJugador)
