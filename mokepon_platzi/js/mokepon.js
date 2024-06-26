@@ -12,21 +12,22 @@ function seleccionarMonstruoJugador() {
     let inputLavasee = document.getElementById('Lavasee').checked
     let inputRocicry = document.getElementById('Rocicry').checked
     let inputClipperwood = document.getElementById('Clipperwood').checked
+    let spanMonstruoJugador = document.getElementById('monstruoJugador')
 
     if(inputFosfyah){
-        alert("Seleccionaste Fosfyah")
+        spanMonstruoJugador.innerHTML = "Fosfyah"
     } else if(inputRioblis){
-        alert("Seleccionaste Rioblis")
+        spanMonstruoJugador.innerHTML = "Rioblis"
     } else if(inputHojurot){
-        alert("Seleccionaste Hojurot")
+        spanMonstruoJugador.innerHTML = "Hojurot"
     } else if(inputLavasee){
-        alert("Seleccionaste Lavasee")
+        spanMonstruoJugador.innerHTML = "Lavasee"
     } else if(inputRocicry){
-        alert("Seleccionaste Rocicry")
+        spanMonstruoJugador.innerHTML = "Rocicry"
     } else if(inputClipperwood){
-        alert("Seleccionaste Clipperwood")
+        spanMonstruoJugador.innerHTML = "Clipperwood"
     } else {
-        alert("Selecciona algun Mostruo")
+        alert("Selecciona un Monstruo")
     }
 }
 
