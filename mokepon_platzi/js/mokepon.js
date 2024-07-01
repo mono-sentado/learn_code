@@ -1,6 +1,7 @@
 let ataqueJugador
 let ataqueRival
-
+let vidasJugador = 3
+let vidasRival = 3
 
 // funcion de inicio de juego
 function iniciarJuego() {
@@ -14,7 +15,6 @@ function iniciarJuego() {
     botonAgua.addEventListener('click', ataqueAgua)
     let botonPlanta = document.getElementById("bplanta")
     botonPlanta.addEventListener('click', ataquePlanta)
-
 }
 
 // funcion de seleccion de monstruo del jugador
@@ -28,17 +28,17 @@ function seleccionarMonstruoJugador() {
     let spanMonstruoJugador = document.getElementById('monstruoJugador')
 
     if(inputFosfyah.checked){
-        spanMonstruoJugador.innerHTML = "Fosfyah"
+        spanMonstruoJugador.innerHTML = "FOSFYAH"
     } else if(inputRioblis.checked){
-        spanMonstruoJugador.innerHTML = "Rioblis"
+        spanMonstruoJugador.innerHTML = "RIOBLIS"
     } else if(inputHojurot.checked){
-        spanMonstruoJugador.innerHTML = "Hojurot"
+        spanMonstruoJugador.innerHTML = "HOJUROT"
     } else if(inputLavasee.checked){
-        spanMonstruoJugador.innerHTML = "Lavasee"
+        spanMonstruoJugador.innerHTML = "LAVASEE"
     } else if(inputRocicry.checked){
-        spanMonstruoJugador.innerHTML = "Rocicry"
+        spanMonstruoJugador.innerHTML = "ROCICRY"
     } else if(inputClipperwood.checked){
-        spanMonstruoJugador.innerHTML = "Clipperwood"
+        spanMonstruoJugador.innerHTML = "CLIPEERWOOD"
     } else {
         alert("Selecciona un Monstruo")
     }
@@ -52,74 +52,105 @@ function seleccionarMonstruoRival(){
     let spanMonstruoRival = document.getElementById('monstruoRival')
 
     if(monstruoAleatorio == 1) {
-        spanMonstruoRival.innerHTML = 'Fosfyah'
+        spanMonstruoRival.innerHTML = 'FOSFYAH'
     }else if(monstruoAleatorio == 2) {
-        spanMonstruoRival.innerHTML = 'Rioblis'
+        spanMonstruoRival.innerHTML = 'RIOBLIS'
     }else if(monstruoAleatorio == 3) {
-        spanMonstruoRival.innerHTML = 'Hojurot'
+        spanMonstruoRival.innerHTML = 'HOJUROT'
     }else if(monstruoAleatorio == 4) {
-        spanMonstruoRival.innerHTML = "Lavasee"
+        spanMonstruoRival.innerHTML = "LAVASEE"
     }else if(monstruoAleatorio == 5) {
-        spanMonstruoRival.innerHTML = "Rocicry"
+        spanMonstruoRival.innerHTML = "ROCICRY"
     }else if(monstruoAleatorio == 6) {
-        spanMonstruoRival.innerHTML = "CLipperwood"
+        spanMonstruoRival.innerHTML = "CLIPEERWOOD"
     }
 }
 
+// ataques de tipo del Jugador
 function ataqueFuego(){
-    ataqueJugador = 'fuego'
+    ataqueJugador = 'FUEGO'
     ataqueAleatorioRival()
 }
 
 function ataqueAgua(){
-    ataqueJugador = 'agua'
+    ataqueJugador = 'AGUA'
     ataqueAleatorioRival()
 }
 
 function ataquePlanta(){
-    ataqueJugador = 'planta'
+    ataqueJugador = 'PLANTA'
     ataqueAleatorioRival()
 }
 
+// ataque aleatorio del Rival
 function ataqueAleatorioRival() {
     let ataqueAleatorio = aleatorio(1,3)
 
      if(ataqueAleatorio == 1) {
-        ataqueRival = 'fuego'
+        ataqueRival = 'FUEGO'
     }else if(ataqueAleatorio == 2) {
-        ataqueRival = 'agua'
+        ataqueRival = 'AGUA'
     }else {
-        ataqueRival = 'planta'
+        ataqueRival = 'PLANTA'
     }
+    combate()
 }
 
 // funcion de combate
 function combate(){
+    let spanVidasJugador = document.getElementById('vidasJugador')
+    let spanVidasRival = document.getElementById('vidasRival')
 
-    let resultado = ""
-
-    if(rival == jugador){
-        resultado = "Tablas"
-    } else if((jugador == fuego && rival == planta) || (jugador == agua && rival == fuego) || (jugador == planta && rival == agua)){
-        resultado = "Victoria"
-    } else {
-        resultado = "Derrota"
+    if(ataqueRival == ataqueJugador){
+        crearMensaje('TABLAS')
+    } else if((ataqueJugador == 'FUEGO' && ataqueRival == 'PLANTA') || (ataqueJugador == 'AGUA' && ataqueRival == 'FUEGO') || (ataqueJugador == 'PLANTA' && ataqueRival == 'AGUA')){
+        crearMensaje('VICTORIA')
+        vidasRival--
+        spanVidasRival.innerHTML = vidasRival
+    } else{
+        crearMensaje('DERROTA')
+        vidasJugador--
+        spanVidasJugador.innerHTML = vidasJugador
     }
-    return resultado
+
+    revisarVidas()
+}
+
+function revisarVidas(){
+    if(vidasJugador == 0){
+        crearMensajeFinal("😩BATALLA PERDIDA😩")
+    }else if(vidasRival == 0){
+        crearMensajeFinal("🎉🎊BATALLA GANADA🎊🎉")
+    }
+}
+// mandar mensaje
+function crearMensaje(resultadoCombate) {
+    let sectionInfo = document.getElementById('info')
+    let parrafo = document.createElement('p')
+    parrafo.innerHTML = 'Tu Mostruo golpea con '+ ataqueJugador + '. Rival golpea con ' + ataqueRival + ". Resultado " + resultadoCombate
+
+    sectionInfo.appendChild(parrafo)
 
 }
+
+function crearMensajeFinal(resultadoFinal) {
+    let sectionInfo = document.getElementById('info')
+    let parrafo = document.createElement('p')
+    parrafo.innerHTML = resultadoFinal
+
+    sectionInfo.appendChild(parrafo)
+
+}
+
+//while (vidasRival < 1 && vidasJugador < 1) {
+//alert("FIN DE LA BATALLA")
+//}
+
 
 // funcion de numero aleatorio
 function aleatorio(min, max){
     return Math.floor(Math.random()*(max-min+1)+min)
 }
-
-let jugador = 3
-let rival = 3
-let vidasJugador = 3
-let vidasRival = 3
-
-//while (vidasJugador == 0 && vidasRival == 0)
 
 // Iniciar juego cuando la ventana cargue por completo
 window.addEventListener('load', iniciarJuego)
