@@ -5,6 +5,12 @@ let vidasRival = 3
 
 // funcion de inicio de juego
 function iniciarJuego() {
+    let sectionSeleccionarGolpe = document.getElementById('seleccion_golpe')
+    sectionSeleccionarGolpe.style.display = 'none'
+    
+    let sectionReinicio = document.getElementById('reinicio')
+    sectionReinicio.style.display = 'none'
+
     let botonMonstruoJugador = document.getElementById('bmonstruo')
     botonMonstruoJugador.addEventListener('click', seleccionarMonstruoJugador)
 
@@ -15,10 +21,20 @@ function iniciarJuego() {
     botonAgua.addEventListener('click', ataqueAgua)
     let botonPlanta = document.getElementById("bplanta")
     botonPlanta.addEventListener('click', ataquePlanta)
+
+    let botonReinicio = document.getElementById('breset')
+    botonReinicio.addEventListener('click', reiniciarJuego)
 }
 
 // funcion de seleccion de monstruo del jugador
 function seleccionarMonstruoJugador() {
+
+    let sectionSeleccionarMonstruo = document.getElementById('seleccion_monstruo')
+    sectionSeleccionarMonstruo.style.display = 'none'
+    
+    let sectionSeleccionarGolpe = document.getElementById('seleccion_golpe')
+    sectionSeleccionarGolpe.style.display = 'block'
+   
     let inputFosfyah = document.getElementById('Fosfyah')
     let inputRioblis = document.getElementById('Rioblis')
     let inputHojurot = document.getElementById('Hojurot')
@@ -116,6 +132,7 @@ function combate(){
     revisarVidas()
 }
 
+// control de vidas
 function revisarVidas(){
     if(vidasJugador == 0){
         crearMensajeFinal("😩BATALLA PERDIDA😩")
@@ -134,18 +151,27 @@ function crearMensaje(resultadoCombate) {
 }
 
 function crearMensajeFinal(resultadoFinal) {
+    let sectionReinicio = document.getElementById('reinicio')
+    sectionReinicio.style.display = 'block'
+
     let sectionInfo = document.getElementById('info')
     let parrafo = document.createElement('p')
     parrafo.innerHTML = resultadoFinal
 
     sectionInfo.appendChild(parrafo)
 
+    let botonFuego = document.getElementById("bfuego")
+    botonFuego.disabled = true
+    let botonAgua = document.getElementById("bagua")
+    botonAgua.disabled = true
+    let botonPlanta = document.getElementById("bplanta")
+    botonPlanta.disabled = true
 }
 
-//while (vidasRival < 1 && vidasJugador < 1) {
-//alert("FIN DE LA BATALLA")
-//}
-
+// boton de reinicio de juego
+function reiniciarJuego (){
+    location.reload()
+}
 
 // funcion de numero aleatorio
 function aleatorio(min, max){
