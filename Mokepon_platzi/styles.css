@@ -1,24 +1,13 @@
 .titulo {
     color: rgb(236, 102, 150);
-    width: 301px;
+    width: 325px;
     height: 50px;
     background-color: darkslateblue;
 }
 
-label {
-    background-color: red;
-    width: 301px;
-    height: 50px;
-}
-
-input {
-    background-color: green;
-    width: 30px;
-    height: 50px;
-}
-
-button {
-    background-color: blue;
-    width: 301px;
-    height: 50px;
+#seleccion_monstruo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

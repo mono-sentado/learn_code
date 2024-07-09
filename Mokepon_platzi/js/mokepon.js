@@ -57,6 +57,7 @@ function seleccionarMonstruoJugador() {
         spanMonstruoJugador.innerHTML = "CLIPEERWOOD"
     } else {
         alert("Selecciona un Monstruo")
+        reiniciarJuego()
     }
 
     seleccionarMonstruoRival()
