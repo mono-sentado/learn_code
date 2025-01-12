@@ -33,29 +33,29 @@ function seleccionarMonstruoJugador() {
     sectionSeleccionarMonstruo.style.display = 'none'
     
     let sectionSeleccionarGolpe = document.getElementById('seleccion_golpe')
-    sectionSeleccionarGolpe.style.display = 'block'
+    sectionSeleccionarGolpe.style.display = 'flex'
    
-    let inputFosfyah = document.getElementById('Fosfyah')
-    let inputRioblis = document.getElementById('Rioblis')
-    let inputHojurot = document.getElementById('Hojurot')
-    let inputLavasee = document.getElementById('Lavasee')
+    let inputFyahfox = document.getElementById('Fyahfox')
+    let inputHipobloo = document.getElementById('Hipobloo')
+    let inputFrosheet = document.getElementById('Frosheet')
+    /*let inputLavasee = document.getElementById('Lavasee')
     let inputRocicry = document.getElementById('Rocicry')
-    let inputClipperwood = document.getElementById('Clipperwood')
+    let inputClipperwood = document.getElementById('Clipperwood')*/
     let spanMonstruoJugador = document.getElementById('monstruoJugador')
 
-    if(inputFosfyah.checked){
-        spanMonstruoJugador.innerHTML = "FOSFYAH"
-    } else if(inputRioblis.checked){
-        spanMonstruoJugador.innerHTML = "RIOBLIS"
-    } else if(inputHojurot.checked){
-        spanMonstruoJugador.innerHTML = "HOJUROT"
-    } else if(inputLavasee.checked){
+    if(inputFyahfox.checked){
+        spanMonstruoJugador.innerHTML = "FYAHFOX"
+    } else if(inputHipobloo.checked){
+        spanMonstruoJugador.innerHTML = "HIPOBLOO"
+    } else if(inputFrosheet.checked){
+        spanMonstruoJugador.innerHTML = "FROSHEET"
+    } /*else if(inputLavasee.checked){
         spanMonstruoJugador.innerHTML = "LAVASEE"
     } else if(inputRocicry.checked){
         spanMonstruoJugador.innerHTML = "ROCICRY"
     } else if(inputClipperwood.checked){
         spanMonstruoJugador.innerHTML = "CLIPEERWOOD"
-    } else {
+    } */else {
         alert("Selecciona un Monstruo")
         reiniciarJuego()
     }
@@ -65,37 +65,37 @@ function seleccionarMonstruoJugador() {
 
 // funcion seleccion aleatorio del monstruo rival
 function seleccionarMonstruoRival(){
-    let monstruoAleatorio = aleatorio (1,6)
+    let monstruoAleatorio = aleatorio (1,3)
     let spanMonstruoRival = document.getElementById('monstruoRival')
 
     if(monstruoAleatorio == 1) {
-        spanMonstruoRival.innerHTML = 'FOSFYAH'
+        spanMonstruoRival.innerHTML = 'FYAHFOX'
     }else if(monstruoAleatorio == 2) {
-        spanMonstruoRival.innerHTML = 'RIOBLIS'
+        spanMonstruoRival.innerHTML = 'HIPOBLOO'
     }else if(monstruoAleatorio == 3) {
-        spanMonstruoRival.innerHTML = 'HOJUROT'
-    }else if(monstruoAleatorio == 4) {
+        spanMonstruoRival.innerHTML = 'FROSHEET'
+    }/*else if(monstruoAleatorio == 4) {
         spanMonstruoRival.innerHTML = "LAVASEE"
     }else if(monstruoAleatorio == 5) {
         spanMonstruoRival.innerHTML = "ROCICRY"
     }else if(monstruoAleatorio == 6) {
         spanMonstruoRival.innerHTML = "CLIPEERWOOD"
-    }
+    }*/
 }
 
 // ataques de tipo del Jugador
 function ataqueFuego(){
-    ataqueJugador = 'FUEGO'
+    ataqueJugador = '🔥FUEGO🔥'
     ataqueAleatorioRival()
 }
 
 function ataqueAgua(){
-    ataqueJugador = 'AGUA'
+    ataqueJugador = '💧AGUA💧'
     ataqueAleatorioRival()
 }
 
 function ataquePlanta(){
-    ataqueJugador = 'PLANTA'
+    ataqueJugador = '🌱PLANTA🌱'
     ataqueAleatorioRival()
 }
 
@@ -104,11 +104,11 @@ function ataqueAleatorioRival() {
     let ataqueAleatorio = aleatorio(1,3)
 
      if(ataqueAleatorio == 1) {
-        ataqueRival = 'FUEGO'
+        ataqueRival = '🔥FUEGO🔥'
     }else if(ataqueAleatorio == 2) {
-        ataqueRival = 'AGUA'
+        ataqueRival = '💧AGUA💧'
     }else {
-        ataqueRival = 'PLANTA'
+        ataqueRival = '🌱PLANTA🌱'
     }
     combate()
 }
@@ -144,10 +144,16 @@ function revisarVidas(){
 // mandar mensaje
 function crearMensaje(resultadoCombate) {
     let sectionInfo = document.getElementById('info')
-    let parrafo = document.createElement('p')
-    parrafo.innerHTML = 'Tu Mostruo golpea con '+ ataqueJugador + '. Rival golpea con ' + ataqueRival + ". Resultado " + resultadoCombate
+    let parrafoJugador = document.createElement('p')
+    let parrafoRival = document.createElement('p')
+    let parrafoResultado = document.createElement('p')
+    parrafoJugador.innerHTML = 'JUGADOR golpea con '+ ataqueJugador + '.' 
+    parrafoRival.innerHTML = 'RIVAL golpea con ' + ataqueRival + "."
+    parrafoResultado.innerHTML = resultadoCombate
 
-    sectionInfo.appendChild(parrafo)
+    sectionInfo.appendChild(parrafoJugador)
+    sectionInfo.appendChild(parrafoRival)
+    sectionInfo.appendChild(parrafoResultado)
 
 }
 

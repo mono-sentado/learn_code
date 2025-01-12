@@ -7,50 +7,56 @@
         <link rel="stylesheet" href="./styles.css">
     
     </head>
-    <body>
+    <body class="bodyPage">
         
         <section id="seleccion_monstruo">
             <h1 class="titulo">🌱🔥💧MOKEPON💧🔥🌱</h1>    
             
-            <h2>Elige tu monstruo:</h2>
+            <h2 class="subtitulo">Elige tu monstruo:</h2>
+            <section class="sMonstruo">
+                <input type="radio" name="monstruo" id="Fyahfox"/>
+                <label class="tarjetaMokepon" for="Fyahfox">Fyahfox</label>
             
-            <input type="radio" name="monstruo" id="Fosfyah"/>
-            <label for="Fosfyah">Fosfyah</label>
-            
-            <input type="radio" name="monstruo" id="Rioblis"/>
-            <label for="Rioblis">Rioblis</label>
+                <input type="radio" name="monstruo" id="Hipobloo"/>
+                <label class="tarjetaMokepon" for="Hipobloo">Hipobloo</label>
 
-            <input type="radio" name="monstruo" id="Hojurot"/>
-            <label for="Hojurot">Hojurot</label>
-
-            <input type="radio" name="monstruo" id="Lavasee"/>
-            <label for="Lavasee">Lavasee</label>
+                <input type="radio" name="monstruo" id="Frosheet"/>
+                <label class="tarjetaMokepon" for="Frosheet">Frosheet</label>
+            </section>
+        <!-- <input type="radio" name="monstruo" id="Lavasee"/>
+            <label class="tarjetaMokepon" for="Lavasee">Lavasee</label>
 
             <input type="radio" name="monstruo" id="Rocicry"/>
-            <label for="Rocicry">Rocicry</label>
+            <label class="tarjetaMokepon" for="Rocicry">Rocicry</label>
 
             <input type="radio" name="monstruo" id="Clipperwood"/>
-            <label for="Clipperwood">Clipperwood</label>
-
-            <button id="bmonstruo">Seleccion</button>
+            <label class="tarjetaMokepon" for="Clipperwood">Clipperwood</label>
+        \-->
+            <button class="selec" id="bmonstruo">Seleccion</button>
         
         </section>
 
         <section id="seleccion_golpe">
-            <h2>Elige tu golpe:</h2>
-            <p>Tu monstruo <span id="monstruoJugador"></span> tiene <span id="vidasJugador">3</span> vidas</p>
-            <p>El monstruo rival <span id="monstruoRival"></span> tiene <span id="vidasRival">3</span> vidas</p>
-            <p>
-                <button id="bfuego">🔥</button>
-                <button id="bagua">💧</button>
-                <button id="bplanta">🌱</button>
-            </p>
+            <h2 class="subtitulo">Elige tu golpe:</h2>
+
+            <section id="infoCombate">
+                <p>Tu monstruo <span class="monstruoGolpe" id="monstruoJugador"></span> tiene <span id="vidasJugador">3</span> vidas</p>
+                <p>El monstruo rival <span class="monstruoGolpe" id="monstruoRival"></span> tiene <span id="vidasRival">3</span> vidas</p>
+            </section>
+
+            <section id="botonGolpe">
+                <p>
+                    <button class="ataque" id="bfuego">🔥</button>
+                    <button class="ataque" id="bagua">💧</button>
+                    <button class="ataque" id="bplanta">🌱</button>
+                </p>
+            </section>
         </section>
 
         <section id="info"></section>
 
-        <section id="reinicio">
-            <p><button id="breset">Reinicio</button></p>
+        <section  id="reinicio">
+            <p><button class="selec" id="breset">Reinicio</button></p>
         </section>
     </body>
 
