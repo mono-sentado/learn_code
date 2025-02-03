@@ -1,0 +1,44 @@
+# Función para obtener la IP pública
+function Get-PublicIP {
+    $ip = Invoke-RestMethod -Uri "https://api.ipify.org?format=json"
+    return $ip.ip
+}
+
+# Función para enviar correo electrónico
+function Send-Email($newIP) {
+    $smtpServer = "smtp.tuservidor.com"
+    $smtpFrom = "tuemail@ejemplo.com"
+    $smtpTo = "destinatario@ejemplo.com"
+    $messageSubject = "Cambio en la dirección IP pública"
+    $messageBody = "La nueva dirección IP pública es: $newIP"
+    $smtpUsername = "tuemail@ejemplo.com"
+    $smtpPassword = "tucontraseña"
+
+    $message = New-Object system.net.mail.mailmessage
+    $message.from = $smtpFrom
+    $message.To.add($smtpTo)
+    $message.Subject = $messageSubject
+    $message.Body = $messageBody
+    $smtp = New-Object Net.Mail.SmtpClient($smtpServer)
+    $smtp.Credentials = New-Object System.Net.NetworkCredential($smtpUsername, $smtpPassword)
+    $smtp.Send($message)
+}
+
+# Función para comprobar el cambio de IP
+function Check-IPChange {
+    $previousIP = Get-PublicIP
+    while ($true) {
+        Start-Sleep -Seconds 3600  # Intervalo de tiempo en segundos (1 hora en este caso)
+        $currentIP = Get-PublicIP
+        if ($currentIP -ne $previousIP) {
+            Write-Output "La dirección IP ha cambiado: $currentIP"
+            Send-Email $currentIP  # Enviar correo electrónico con la nueva IP
+            $previousIP = $currentIP
+        } else {
+            Write-Output "La dirección IP no ha cambiado."
+        }
+    }
+}
+
+# Iniciar la comprobación de cambio de IP
+Check-IPChange
